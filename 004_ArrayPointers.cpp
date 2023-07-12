@@ -19,7 +19,7 @@ int main()
     printf("\n\n");
     for (int i = 0; i < 4; i++)
     {
-        printf("\n\nDifferent ways to get the address of nums[%d] ", i);
+        printf("\n\nDifferent ways to get the value of nums[%d] ", i);
         printf("\n  nums[%d] = %d", i, nums[i]);
         printf("\t\t*(nums+%d) = %d", i, *(nums + i));
         printf("\t\t*(ptr+%d)  = %d", i, *(ptr + i));
