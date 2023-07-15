@@ -35,6 +35,6 @@ int main()
     }
     printf("\n\n");
 
-    // Using %d specifier to print the address in base10 int for easy understanding
+    // Using %d specifier to print the address in base-10 int for easy understanding
     return 0;
 }

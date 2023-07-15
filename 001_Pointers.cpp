@@ -26,7 +26,7 @@ int main()
     printf("\t &p = %d, &p = %x\n", &p, &p);
     printf("\t  q = %d,  q = %x\n", q, q);
     printf("\n\n");
-    // %d is used to print the address in decimal format
-    // %x is used to print the address in hexadec format
+    // %d is used to print the address in decimal format (base-10)
+    // %x is used to print the address in hexadec format (base-16)
     return 0;
 }
