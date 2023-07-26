@@ -1,4 +1,4 @@
-// 004 Array Pointers and Pointer Arithematics
+// 006 Structure Pointers
 #include <iostream>
 using namespace std;
 
@@ -21,14 +21,14 @@ int main()
 
     // Finding the size of your struct using pointer arithematic
     student *str_ptr = &str_var;
-    printf("\nstr_ptr    = %d", str_ptr);
-    printf("\nstr_ptr+1  = %d", str_ptr + 1);
-    printf("\nsize of our struct = %d", (long long)(str_ptr + 1) - (long long)(str_ptr));
+    printf("\nsize of struct     = %d", (long long)(str_ptr + 1) - (long long)(str_ptr));
+    printf("\n\n\tstr_ptr    = %d", str_ptr);
+    printf("\n\tstr_ptr+1  = %d\n", str_ptr + 1);
 
     // The size of a struct is not always equal to the sum of the sizes of its members. This is because the compiler may add padding to the struct to ensure that its members are aligned on a word boundary. Word boundaries are important for performance, as they allow the CPU to access data more efficiently. The amount of padding added to a struct is implementation-defined. This means that the amount of padding may vary depending on the compiler and the platform.
-    // In easier words padding makes sure that every int variable has an address that is a multiple of 4, and every double variable has an address that is a multiple of 8, to ensure that variables of same data type are aligned with each other.
 
-    printf("\n\nstd\tsec\tnum");
+    printf("\nAccessing the members of the struct");
+    printf("\nstd\tsec\tnum");
     // Accessing members of the struct using variable name and . dot operator
     str_var.std = 11;
     str_var.sec = 'A';
@@ -42,7 +42,7 @@ int main()
 
     printf("\n");
     // Getting the address of members of the struct
-    printf("\nGetting the address of members of the struct");
+    printf("\nGetting the address of the members of the struct");
     printf("\n&str_var.std (int)    = %d = %d", &str_var.std, &str_ptr->std);
     printf("\n&str_var.sec (char)   = %d = %d", &str_var.sec, &str_ptr->sec);
     printf("\n&str_var.num (double) = %d = %d", &str_var.num, &str_ptr->num);
