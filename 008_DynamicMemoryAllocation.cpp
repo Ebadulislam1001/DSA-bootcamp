@@ -10,7 +10,7 @@ int main()
     // These are the examples of static memory allocation
     printf("\n\nExamples of statically allocated memory/variable.\n");
     int i_var = 12;
-    int *i_ptr = NULL;
+    int *i_ptr = &i_var;
     int *a_ptr = NULL;
 
     // Lets see the use of "malloc()", "calloc()", "realloc()", and "free()".
