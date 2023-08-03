@@ -31,13 +31,16 @@ int main()
     n4.next = &n5;  // Fourth node next part points to Fifth node
     n5.next = NULL; // Fifth node next part points to NULL (marks the end of the list)
 
-    node *temp = &n1;
+    node *temp = &n1; // temp pointer pointing to the first node
     printf("\n\nList Elements ");
     while (temp != NULL)
     {
-        printf("-> %c ", temp->data);
-        temp = temp->next;
+        // Let temp pointer pointing to the ith node
+        printf("-> %c ", temp->data); // Print the ith character
+        temp = temp->next;            // temp pointer pointing to the (i+1)th node
     }
+    // (temp == NULL) brings us out of the loop
+    // We have traversed through all the nodes in the Linked List
     printf("\n\n");
     return 0;
 }
