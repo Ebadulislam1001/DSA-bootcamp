@@ -1,4 +1,4 @@
-// 010 Linked Lists (Insertion & Deletion)
+// 010 Linked Lists Insertion
 #include <iostream>
 using namespace std;
 
@@ -79,16 +79,13 @@ void insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
         else
         {
             ListNode *temp = head;
-            while (temp->next != NULL && index > 1)
+            while (index > 1)
             {
                 temp = temp->next;
                 index -= 1;
             }
-            if (temp != NULL)
-            {
-                newnode->next = temp->next;
-                temp->next = newnode;
-            }
+            newnode->next = temp->next;
+            temp->next = newnode;
         }
     }
 }
