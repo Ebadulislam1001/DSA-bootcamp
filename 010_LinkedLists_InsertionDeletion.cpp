@@ -46,9 +46,9 @@ void delAtBeg(ListNode *&head) // Delete at Beginning
     if (head == NULL)
         return;
 
-    ListNode *waste = head;
-    head = head->next;
-    delete waste;
+    ListNode *dead = head;
+    head = dead->next;
+    delete dead;
 }
 void insAtEnd(ListNode *&head, int value) // Insert at End
 {
@@ -81,9 +81,8 @@ void delAtEnd(ListNode *&head) // Delete at End
     {
         temp = temp->next;
     }
-    ListNode *waste = temp->next;
+    delete temp->next;
     temp->next = NULL;
-    delete waste;
 }
 void insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
 {
@@ -99,28 +98,22 @@ void insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
     else
     {
         ListNode *newnode = createNode(value);
-        if (head == NULL)
+        ListNode *temp = head;
+        while (index > 1)
         {
-            head = newnode;
+            temp = temp->next;
+            index -= 1;
         }
-        else
-        {
-            ListNode *temp = head;
-            while (index > 1)
-            {
-                temp = temp->next;
-                index -= 1;
-            }
-            newnode->next = temp->next;
-            temp->next = newnode;
-        }
+        newnode->next = temp->next;
+        temp->next = newnode;
     }
 }
 void delAtIndex(ListNode *&head, int index) // Delete at given Index
 {
     if (index < 0 || sizeOf(head) - 1 < index)
     {
-        // Invalid Index
+        // Checks for invalid Index
+        // Also checks for if list is empty or not
         return;
     }
     else if (index == 0)
@@ -129,22 +122,15 @@ void delAtIndex(ListNode *&head, int index) // Delete at given Index
     }
     else
     {
-        if (head == NULL)
+        ListNode *temp = head;
+        while (index > 1)
         {
-            return;
+            temp = temp->next;
+            index -= 1;
         }
-        else
-        {
-            ListNode *temp = head;
-            while (index > 1)
-            {
-                temp = temp->next;
-                index -= 1;
-            }
-            ListNode *waste = temp->next;
-            temp->next = waste->next;
-            delete waste;
-        }
+        ListNode *dead = temp->next;
+        temp->next = dead->next;
+        delete dead;
     }
 }
 void display(ListNode *head) // Display using List Traversal
