@@ -1,4 +1,4 @@
-// 010 Linked Lists Insertion
+// 010 Linked Lists Insertion and Deletion
 #include <iostream>
 using namespace std;
 
@@ -6,6 +6,9 @@ struct ListNode
 {
     int data;
     ListNode *next;
+
+    // next pointer declaration syntax for C
+    // struct ListNode *next;
 };
 
 ListNode *createNode(int value = 0) // create node
@@ -30,108 +33,152 @@ int sizeOf(ListNode *&head)
     ListNode *temp = head;
     while (temp != NULL)
     {
+        // For every node in the list increment the size by 1 & then point to the next node
         temp = temp->next;
         size = size + 1;
     }
+    // Hence, size = no. of nodes in the list
     return size;
 }
-void insAtBeg(ListNode *&head, int value) // Insert at Beginning
+int insAtBeg(ListNode *&head, int value) // Insert at Beginning
 {
+    // Allocate a node dynamically
     ListNode *newnode = createNode(value);
+    // Newnode points current first node
     newnode->next = head;
+    // Newnode is the new first node
     head = newnode;
+    // Newnode added at beginning
+    return 0;
 }
-void delAtBeg(ListNode *&head) // Delete at Beginning
+int insAtEnd(ListNode *&head, int value) // Insert at End
 {
-    if (head == NULL)
-        return;
-
-    ListNode *dead = head;
-    head = dead->next;
-    delete dead;
-}
-void insAtEnd(ListNode *&head, int value) // Insert at End
-{
+    // Allocate a node dynamically
     ListNode *newnode = createNode(value);
+    // If the list is empty
     if (head == NULL)
     {
+        // Newnode is the new first node
         head = newnode;
+        // Newnode added at beginning
+        return 0;
     }
-    else
-    {
-        ListNode *temp = head;
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-        temp->next = newnode;
-    }
-}
-void delAtEnd(ListNode *&head) // Delete at End
-{
-    if (head == NULL)
-        return;
-
-    if (head->next == NULL)
-    {
-        delAtBeg(head);
-    }
+    int index = 1;
     ListNode *temp = head;
-    while (temp->next->next != NULL)
+    // Traverse the list till the last node
+    while (temp->next != NULL)
     {
         temp = temp->next;
+        index += 1;
     }
-    delete temp->next;
-    temp->next = NULL;
+    // Make the last node point to newnode
+    // Newnode is the new last node
+    temp->next = newnode;
+    // Newnode added at end
+    return index;
 }
-void insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
+int insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
 {
     if (index < 0 || sizeOf(head) < index)
     {
         // Invalid Index
-        return;
+        // No node is added
+        return -1;
     }
-    else if (index == 0)
+    if (index == 0)
     {
-        insAtBeg(head, value);
+        // If index = 0: insert the newnode at beginning
+        return insAtBeg(head, value);
     }
-    else
+    // Allocate a node dynamically
+    ListNode *newnode = createNode(value);
+    ListNode *temp = head;
+    // Traverse the list till the given index
+    for (int t = 1; t < index; t++)
     {
-        ListNode *newnode = createNode(value);
-        ListNode *temp = head;
-        while (index > 1)
-        {
-            temp = temp->next;
-            index -= 1;
-        }
-        newnode->next = temp->next;
-        temp->next = newnode;
+        temp = temp->next;
     }
+    // Make the (i-1)th node point to newnode
+    // Newnode is the new ith node
+    newnode->next = temp->next;
+    temp->next = newnode;
+    // Newnode added at the given index
+    return index;
 }
-void delAtIndex(ListNode *&head, int index) // Delete at given Index
+int delAtBeg(ListNode *&head) // Delete at Beginning
+{
+
+    if (head == NULL)
+    {
+        // The list is empty
+        // No node is deleted
+        return -1;
+    }
+    // Mark the first node dead;
+    ListNode *dead = head;
+    // Make the head point to the second node
+    // Second node is the new first node
+    head = dead->next;
+    // Prev first node is deleted (memory deallocated)
+    delete dead;
+    // Node deleted from beginning
+    return 0;
+}
+int delAtEnd(ListNode *&head) // Delete at End
+{
+    if (head == NULL)
+    {
+        // The list is empty
+        // No node is deleted
+        return -1;
+    }
+    // If the list has only one node
+    if (head->next == NULL)
+    {
+        // Delete the first node
+        return delAtBeg(head);
+    }
+    int index = 1;
+    ListNode *temp = head;
+    // Traverse the list till the second last node
+    while (temp->next->next != NULL)
+    {
+        temp = temp->next;
+        index += 1;
+    }
+    // Delete the last node
+    delete temp->next;
+    // Second last node is the new last node
+    temp->next = NULL;
+    // Node deleted from end
+    return index;
+}
+int delAtIndex(ListNode *&head, int index) // Delete at given Index
 {
     if (index < 0 || sizeOf(head) - 1 < index)
     {
         // Checks for invalid Index
         // Also checks for if list is empty or not
-        return;
+        // No node is deleted
+        return -1;
     }
-    else if (index == 0)
+    if (index == 0)
     {
-        delAtBeg(head);
+        // If index = 0: delete the newnode from beginning
+        return delAtBeg(head);
     }
-    else
+    ListNode *temp = head;
+    // Traverse the list till the given index
+    for (int t = 1; t < index; t++)
     {
-        ListNode *temp = head;
-        while (index > 1)
-        {
-            temp = temp->next;
-            index -= 1;
-        }
-        ListNode *dead = temp->next;
-        temp->next = dead->next;
-        delete dead;
+        temp = temp->next;
     }
+    // Mark the node at the given index as dead
+    ListNode *dead = temp->next;
+    temp->next = dead->next;
+    delete dead;
+    // Node deleted from the given index
+    return index;
 }
 void display(ListNode *head) // Display using List Traversal
 {
@@ -139,6 +186,7 @@ void display(ListNode *head) // Display using List Traversal
     ListNode *temp = head;
     while (temp != NULL)
     {
+        // For every node in the list print its data value & then point to the next node
         printf(" %d", temp->data);
         temp = temp->next;
     }
@@ -156,14 +204,13 @@ int main()
         printf("\nDelete at:\n\t04.beginning\n\t05.end\n\t06.given index");
         printf("\n0.Exit\n\n");
         scanf("%d", &choice);
-        printf("\n");
         switch (choice)
         {
         case 1: // insert at beg
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            insAtBeg(head, value);
+            index = insAtBeg(head, value);
             display(head);
             break;
         }
@@ -171,7 +218,7 @@ int main()
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            insAtEnd(head, value);
+            index = insAtEnd(head, value);
             display(head);
             break;
         }
@@ -181,19 +228,19 @@ int main()
             scanf("%d", &value);
             printf("Enter index: ");
             scanf("%d", &index);
-            insAtIndex(head, value, index);
+            index = insAtIndex(head, value, index);
             display(head);
             break;
         }
         case 4: // delete at beg
         {
-            delAtBeg(head);
+            index = delAtBeg(head);
             display(head);
             break;
         }
         case 5: // delete at end
         {
-            delAtEnd(head);
+            index = delAtEnd(head);
             display(head);
             break;
         }
@@ -201,7 +248,7 @@ int main()
         {
             printf("Enter index: ");
             scanf("%d", &index);
-            delAtIndex(head, index);
+            index = delAtIndex(head, index);
             display(head);
             break;
         }
@@ -212,8 +259,22 @@ int main()
         }
         default:
         {
-            printf("Invalid choice (choose 0-6)");
+            printf("\nInvalid choice (choose 0-6)");
         }
+        }
+        if (1 <= choice && choice <= 3)
+        {
+            if (index == -1)
+                printf("\nFailed to insert node");
+            else
+                printf("\nNode inserted at index %d", index);
+        }
+        if (4 <= choice && choice <= 6)
+        {
+            if (index == -1)
+                printf("\nFailed to delete node");
+            else
+                printf("\nNode deleted at index %d", index);
         }
     }
 }
