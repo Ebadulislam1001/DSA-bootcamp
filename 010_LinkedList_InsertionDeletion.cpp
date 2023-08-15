@@ -40,6 +40,17 @@ int sizeOf(ListNode *&head) // returns the size of the list i.e. the number of n
     // Hence, size = no. of nodes in the list
     return size;
 }
+void display(ListNode *head) // Display using List Traversal
+{
+    printf("\nList:");
+    ListNode *temp = head;
+    while (temp != NULL)
+    {
+        // For every node in the list print its data value & then point to the next node
+        printf(" %d", temp->data);
+        temp = temp->next;
+    }
+}
 int insAtBeg(ListNode *&head, int value) // Insert at Beginning
 {
     // Allocate a node dynamically
@@ -180,17 +191,6 @@ int delAtIndex(ListNode *&head, int index) // Delete at given Index
     // Node deleted from the given index
     return index;
 }
-void display(ListNode *head) // Display using List Traversal
-{
-    printf("\nList:");
-    ListNode *temp = head;
-    while (temp != NULL)
-    {
-        // For every node in the list print its data value & then point to the next node
-        printf(" %d", temp->data);
-        temp = temp->next;
-    }
-}
 
 int main()
 {
@@ -282,11 +282,13 @@ int main()
 // Time Complexities of these functions
 
 // ListNode *createNode(int value = 0)                      O(1)
-// int sizeOf(ListNode *&head)                              O(N) can be optimised
+// int sizeOf(ListNode *&head)                              O(N) can be optimised to O(1)
+// void display(ListNode *head)                             O(N)
+
 // int insAtBeg(ListNode *&head, int value)                 O(1)
-// int insAtEnd(ListNode *&head, int value)                 O(N) can be optimised
+// int insAtEnd(ListNode *&head, int value)                 O(N) can be optimised to O(1)
 // int insAtIndex(ListNode *&head, int value, int index)    O(N)
+
 // int delAtBeg(ListNode *&head)                            O(1)
 // int delAtEnd(ListNode *&head)                            O(N)
 // int delAtIndex(ListNode *&head, int index)               O(N)
-// void display(ListNode *head)                             O(N)
