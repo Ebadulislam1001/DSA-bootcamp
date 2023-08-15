@@ -27,7 +27,7 @@ ListNode *createNode(int value = 0) // create node
 
     return newnode;
 }
-int sizeOf(ListNode *&head)
+int sizeOf(ListNode *&head) // returns the size of the list i.e. the number of nodes
 {
     int size = 0;
     ListNode *temp = head;
@@ -278,3 +278,15 @@ int main()
         }
     }
 }
+
+// Time Complexities of these functions
+
+// ListNode *createNode(int value = 0)                      O(1)
+// int sizeOf(ListNode *&head)                              O(N) can be optimised
+// int insAtBeg(ListNode *&head, int value)                 O(1)
+// int insAtEnd(ListNode *&head, int value)                 O(N) can be optimised
+// int insAtIndex(ListNode *&head, int value, int index)    O(N)
+// int delAtBeg(ListNode *&head)                            O(1)
+// int delAtEnd(ListNode *&head)                            O(N)
+// int delAtIndex(ListNode *&head, int index)               O(N)
+// void display(ListNode *head)                             O(N)
