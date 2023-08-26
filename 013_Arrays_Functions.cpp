@@ -81,6 +81,10 @@ int linearSearch(int arr[], int size, int value)
     }
     return -1;
 }
+// rotate left
+// rotate right
+// fwd display recursively
+// rev display recursively
 void display(int arr[], int size)
 {
     cout << "\nArray :";
@@ -89,10 +93,6 @@ void display(int arr[], int size)
         cout << " " << arr[i];
     }
 }
-// reverse iteratively
-// reverse recursively
-// fwd display recursively
-// rev display recursively
 
 int main()
 {
@@ -203,7 +203,7 @@ int main()
         }
         default:
         {
-            cout << "Invalid Choice -> pick [0-6] \n";
+            cout << "Invalid Choice -> pick [0-7] \n";
             break;
         }
         }
