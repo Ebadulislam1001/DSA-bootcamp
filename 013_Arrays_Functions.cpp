@@ -72,6 +72,15 @@ int deleteAtIndex(int arr[], int &size, int index)
     size--;
     return index;
 }
+int linearSearch(int arr[], int size, int value)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] == value)
+            return i;
+    }
+    return -1;
+}
 void display(int arr[], int size)
 {
     cout << "\nArray :";
@@ -80,6 +89,10 @@ void display(int arr[], int size)
         cout << " " << arr[i];
     }
 }
+// reverse iteratively
+// reverse recursively
+// fwd display recursively
+// rev display recursively
 
 int main()
 {
@@ -88,14 +101,18 @@ int main()
     {
         printf("\n\n=============MENU=============\n");
 
-        printf("\nInsert at:\n\t01.beginning\n\t02.end\n\t03.given index");
-        printf("\nDelete at:\n\t04.beginning\n\t05.end\n\t06.given Index");
+        printf("\nInsertion\n\t01.at beginning\n\t02.at end\n\t03.at given index");
+        printf("\nDeletion\n\t04.at beginning\n\t05.at end\n\t06.at given Index");
+        printf("\nSearch\n\t07.linear search");
+        printf("\nRotate\n\t08.left\n\t09.right");
+        printf("\nDisplay\n\t10.forward (rec.)\n\t12.backwar (rec.)");
         printf("\n00.Exit   \n\n");
         scanf("%d", &choice);
 
         switch (choice)
         {
         case 1:
+        {
             cout << "Enter the value : ";
             cin >> value;
             index = insertAtBeg(arr, size, value);
@@ -105,7 +122,9 @@ int main()
                 cout << "\nSuccessfully Inserted at Begin";
             display(arr, size);
             break;
+        }
         case 2:
+        {
             cout << "Enter the value : ";
             cin >> value;
             index = insertAtEnd(arr, size, value);
@@ -115,7 +134,9 @@ int main()
                 cout << "\nSuccessfully Inserted at End";
             display(arr, size);
             break;
+        }
         case 3:
+        {
             cout << "Enter the value : ";
             cin >> value;
             cout << "Enter the index : ";
@@ -129,7 +150,9 @@ int main()
                 cout << "\nSuccessfully Inserted at Index = " << index;
             display(arr, size);
             break;
+        }
         case 4:
+        {
             index = deleteAtBeg(arr, size);
             if (index == -1)
                 cout << "\nArray Underflow -> no elements to delete";
@@ -137,7 +160,9 @@ int main()
                 cout << "\nSuccessfully Deleted at Begin";
             display(arr, size);
             break;
+        }
         case 5:
+        {
             index = deleteAtEnd(arr, size);
             if (index == -1)
                 cout << "\nArray Underflow -> no elements to delete";
@@ -145,7 +170,9 @@ int main()
                 cout << "\nSuccessfully Deleted at End";
             display(arr, size);
             break;
+        }
         case 6:
+        {
             cout << "Enter the index : ";
             cin >> index;
             index = deleteAtIndex(arr, size, index);
@@ -157,12 +184,28 @@ int main()
                 cout << "\nSuccessfully Deleted at Index = " << index;
             display(arr, size);
             break;
+        }
+        case 7:
+        {
+            cout << "Enter the value : ";
+            cin >> value;
+            index = linearSearch(arr, size, value);
+            if (index == -1)
+                cout << "\nNot Found";
+            else
+                cout << "\nElement Found at index %d", index;
+            display(arr, size);
+            break;
+        }
         case 0:
+        {
             return 0;
-
+        }
         default:
+        {
             cout << "Invalid Choice -> pick [0-6] \n";
             break;
+        }
         }
     }
 
