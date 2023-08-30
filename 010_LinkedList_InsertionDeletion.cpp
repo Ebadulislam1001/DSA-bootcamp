@@ -11,7 +11,7 @@ struct ListNode
     // struct ListNode *next;
 };
 
-ListNode *createNode(int value = 0) // create node
+ListNode *createNode(int value = 0) // Creates/Allocates a new node
 {
     // Using malloc to create/allocate a node in C
     // struct ListNode* newnode = (struct ListNode *)malloc(sizeof(struct ListNode *));
@@ -27,7 +27,7 @@ ListNode *createNode(int value = 0) // create node
 
     return newnode;
 }
-int sizeOf(ListNode *&head) // returns the size of the list i.e. the number of nodes
+int sizeOf(ListNode *&head) // Returns the size of the list i.e. the number of nodes
 {
     int size = 0;
     ListNode *temp = head;
@@ -51,7 +51,7 @@ void display(ListNode *head) // Display using List Traversal
         temp = temp->next;
     }
 }
-int insAtBeg(ListNode *&head, int value) // Insert at Beginning
+int insertAtBeg(ListNode *&head, int value) // Insert at Beginning
 {
     // Allocate a node dynamically
     ListNode *newnode = createNode(value);
@@ -62,7 +62,7 @@ int insAtBeg(ListNode *&head, int value) // Insert at Beginning
     // Newnode added at beginning
     return 0;
 }
-int insAtEnd(ListNode *&head, int value) // Insert at End
+int insertAtEnd(ListNode *&head, int value) // Insert at End
 {
     // Allocate a node dynamically
     ListNode *newnode = createNode(value);
@@ -88,7 +88,7 @@ int insAtEnd(ListNode *&head, int value) // Insert at End
     // Newnode added at end
     return index;
 }
-int insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
+int insertAtIndex(ListNode *&head, int value, int index) // Insert at given Index
 {
     if (index < 0 || sizeOf(head) < index)
     {
@@ -99,7 +99,7 @@ int insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
     if (index == 0)
     {
         // If index = 0: insert the newnode at beginning
-        return insAtBeg(head, value);
+        return insertAtBeg(head, value);
     }
     // Allocate a node dynamically
     ListNode *newnode = createNode(value);
@@ -116,7 +116,7 @@ int insAtIndex(ListNode *&head, int value, int index) // Insert at given Index
     // Newnode added at the given index
     return index;
 }
-int delAtBeg(ListNode *&head) // Delete at Beginning
+int deleteAtBeg(ListNode *&head) // Delete at Beginning
 {
 
     if (head == NULL)
@@ -135,7 +135,7 @@ int delAtBeg(ListNode *&head) // Delete at Beginning
     // Node deleted from beginning
     return 0;
 }
-int delAtEnd(ListNode *&head) // Delete at End
+int deleteAtEnd(ListNode *&head) // Delete at End
 {
     if (head == NULL)
     {
@@ -147,7 +147,7 @@ int delAtEnd(ListNode *&head) // Delete at End
     if (head->next == NULL)
     {
         // Delete the first node
-        return delAtBeg(head);
+        return deleteAtBeg(head);
     }
     int index = 1;
     ListNode *temp = head;
@@ -164,7 +164,7 @@ int delAtEnd(ListNode *&head) // Delete at End
     // Node deleted from end
     return index;
 }
-int delAtIndex(ListNode *&head, int index) // Delete at given Index
+int deleteAtIndex(ListNode *&head, int index) // Delete at given Index
 {
     if (index < 0 || sizeOf(head) - 1 < index)
     {
@@ -176,7 +176,7 @@ int delAtIndex(ListNode *&head, int index) // Delete at given Index
     if (index == 0)
     {
         // If index = 0: delete the newnode from beginning
-        return delAtBeg(head);
+        return deleteAtBeg(head);
     }
     ListNode *temp = head;
     // Traverse the list till the given index
@@ -206,49 +206,49 @@ int main()
         scanf("%d", &choice);
         switch (choice)
         {
-        case 1: // insert at beg
+        case 1: // Insert at beg
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            index = insAtBeg(head, value);
+            index = insertAtBeg(head, value);
             display(head);
             break;
         }
-        case 2: // insert at end
+        case 2: // Insert at end
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            index = insAtEnd(head, value);
+            index = insertAtEnd(head, value);
             display(head);
             break;
         }
-        case 3: // insert at index
+        case 3: // Insert at index
         {
             printf("Enter data value: ");
             scanf("%d", &value);
             printf("Enter index: ");
             scanf("%d", &index);
-            index = insAtIndex(head, value, index);
+            index = insertAtIndex(head, value, index);
             display(head);
             break;
         }
-        case 4: // delete at beg
+        case 4: // Delete at beg
         {
-            index = delAtBeg(head);
+            index = deleteAtBeg(head);
             display(head);
             break;
         }
-        case 5: // delete at end
+        case 5: // Delete at end
         {
-            index = delAtEnd(head);
+            index = deleteAtEnd(head);
             display(head);
             break;
         }
-        case 6: // delete at index
+        case 6: // Delete at index
         {
             printf("Enter index: ");
             scanf("%d", &index);
-            index = delAtIndex(head, index);
+            index = deleteAtIndex(head, index);
             display(head);
             break;
         }

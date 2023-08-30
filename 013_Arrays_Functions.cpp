@@ -1,3 +1,4 @@
+// 013 Array Functions
 #include <iostream>
 using namespace std;
 
@@ -83,6 +84,7 @@ int linearSearch(int arr[], int size, int value)
 }
 // rotate left
 // rotate right
+// reverse
 // fwd display recursively
 // rev display recursively
 void display(int arr[], int size)
@@ -104,8 +106,8 @@ int main()
         printf("\nInsertion\n\t01.at beginning\n\t02.at end\n\t03.at given index");
         printf("\nDeletion\n\t04.at beginning\n\t05.at end\n\t06.at given Index");
         printf("\nSearch\n\t07.linear search");
-        printf("\nRotate\n\t08.left\n\t09.right");
-        printf("\nDisplay\n\t10.forward (rec.)\n\t12.backwar (rec.)");
+        printf("\nRotate\n\t08.left\n\t09.right\n\t10.reverse");
+        printf("\nDisplay\n\t11.forward (rec.)\n\t12.backwar (rec.)");
         printf("\n00.Exit   \n\n");
         scanf("%d", &choice);
 
