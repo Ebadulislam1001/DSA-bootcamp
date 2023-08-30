@@ -82,11 +82,51 @@ int linearSearch(int arr[], int size, int value)
     }
     return -1;
 }
-// rotate left
-// rotate right
-// reverse
-// fwd display recursively
-// rev display recursively
+void rotateLeft(int arr[], int size)
+{
+    int last = arr[0];
+    for (int i = 1; i < size; i++)
+    {
+        arr[i - 1] = arr[i];
+    }
+    arr[size - 1] = last;
+}
+void rotateRight(int arr[], int size)
+{
+    int first = arr[size - 1];
+    for (int i = size; i > 1; i--)
+    {
+        arr[i - 1] = arr[i - 2];
+    }
+    arr[0] = first;
+}
+void reverse(int arr[], int size)
+{
+    for (int i = 0, j = size - 1; i < j; i++, j--)
+    {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+void fwdDisplayRec(int arr[], int size)
+{
+    if (size == 0)
+    {
+        return;
+    }
+    fwdDisplayRec(arr, size - 1);
+    printf(" %d", arr[size - 1]);
+}
+void revDisplayRec(int arr[], int size)
+{
+    if (size == 0)
+    {
+        return;
+    }
+    printf(" %d", arr[size - 1]);
+    revDisplayRec(arr, size - 1);
+}
 void display(int arr[], int size)
 {
     cout << "\nArray :";
@@ -195,7 +235,37 @@ int main()
             if (index == -1)
                 cout << "\nNot Found";
             else
-                cout << "\nElement Found at index %d", index;
+                cout << "\nElement Found at index ", index;
+            display(arr, size);
+            break;
+        }
+        case 8:
+        {
+            rotateLeft(arr, size);
+            display(arr, size);
+            break;
+        }
+        case 9:
+        {
+            rotateRight(arr, size);
+            display(arr, size);
+            break;
+        }
+        case 10:
+        {
+            reverse(arr, size);
+            display(arr, size);
+            break;
+        }
+        case 11:
+        {
+            fwdDisplayRec(arr, size);
+            display(arr, size);
+            break;
+        }
+        case 12:
+        {
+            revDisplayRec(arr, size);
             display(arr, size);
             break;
         }
@@ -205,7 +275,7 @@ int main()
         }
         default:
         {
-            cout << "Invalid Choice -> pick [0-7] \n";
+            cout << "Invalid Choice -> pick [0-12] \n";
             break;
         }
         }
