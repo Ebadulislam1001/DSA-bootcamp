@@ -100,41 +100,6 @@ void rotateRight(ListNode *&head) // Rotate the nodes right by one index
     head = temp->next;
     temp->next = NULL;
 }
-ListNode *reverseListItr(ListNode *head) // Reverse the order of nodes using iterative appproach
-{
-    if (head != NULL && head->next != NULL)
-    {
-        ListNode *t1 = NULL;
-        ListNode *t2 = head;
-        ListNode *t3 = head->next;
-        while (t2 != NULL)
-        {
-            t2->next = t1;
-            t1 = t2;
-            t2 = t3;
-            if (t3 != NULL)
-            {
-                t3 = t3->next;
-            }
-            else
-            {
-                head = t1;
-            }
-        }
-    }
-    return head;
-}
-ListNode *reverseListRec(ListNode *head) // Reverse the order of nodes using recursive approach
-{
-    if (head == NULL || head->next == NULL)
-    {
-        return head;
-    }
-    ListNode *tail = reverseListRec(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return tail;
-}
 void fwdDisplayRec(ListNode *head) // Display the list using recursion
 {
     if (head != NULL)
@@ -175,8 +140,7 @@ int main()
 
         printf("\n00.Exit\n01.Add node\n02.Del node\n03.Read data\n04.Write data");
         printf("\n05.Search data\n06.Rotate Left\n07.Rotate Right");
-        printf("\n08.Reverse List (itr.)\n09.Reverse List (rec.)");
-        printf("\n10.FWD Display List (rec.)\n11.REV Display (rec.)\n\n");
+        printf("\n08.FWD Display List (rec.)\n08.REV Display (rec.)\n\n");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -240,25 +204,13 @@ int main()
             rotateRight(head);
             break;
         }
-        case 8: // Reverse List (itr.)
-        {
-            printf("Reversing the order of the nodes\n");
-            head = reverseListItr(head);
-            break;
-        }
-        case 9: // Reverse List (rec.)
-        {
-            printf("Reversing the order of the nodes\n");
-            head = reverseListRec(head);
-            break;
-        }
-        case 10: // Forward Display (rec.)
+        case 8: // Forward Display (rec.)
         {
             printf("Printing list using recursion\n\n\t");
             fwdDisplayRec(head);
             break;
         }
-        case 11: // Reverse Display (rec.)
+        case 9: // Reverse Display (rec.)
         {
             printf("Reverse printing list using recursion\n\n\t");
             revDisplayRec(head);
@@ -271,7 +223,7 @@ int main()
         }
         default: // Invalid choice
         {
-            printf("\nInvalid choice (choose 0-12)");
+            printf("\nInvalid choice (choose 0-9)");
         }
         }
         size = display(head);
