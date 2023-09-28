@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-/* O(N) time */ int insertAtBeg(int arr[], int &size, int value)
+int insertAtBeg(int arr[], int &size, int value)
 {
     if (size == 50)
         return -1;
@@ -15,7 +15,7 @@ using namespace std;
     size++;
     return 0;
 }
-/* O(1) time */ int insertAtEnd(int arr[], int &size, int value)
+int insertAtEnd(int arr[], int &size, int value)
 {
     if (size == 50)
         return -1;
@@ -24,7 +24,7 @@ using namespace std;
     size++;
     return size - 1;
 }
-/* O(N) time */ int insertAtIndex(int arr[], int &size, int value, int index)
+int insertAtIndex(int arr[], int &size, int value, int index)
 {
     if (size == 50)
         return -1;
@@ -39,7 +39,7 @@ using namespace std;
     size++;
     return index;
 }
-/* O(N) time */ int deleteAtBeg(int arr[], int &size)
+int deleteAtBeg(int arr[], int &size)
 {
     if (size == 0)
         return -1;
@@ -51,7 +51,7 @@ using namespace std;
     size--;
     return 0;
 }
-/* O(1) time */ int deleteAtEnd(int arr[], int &size)
+int deleteAtEnd(int arr[], int &size)
 {
     if (size == 0)
         return -1;
@@ -59,7 +59,7 @@ using namespace std;
     size--;
     return size;
 }
-/* O(N) time */ int deleteAtIndex(int arr[], int &size, int index)
+int deleteAtIndex(int arr[], int &size, int index)
 {
     if (size == 0)
         return -1;
@@ -73,7 +73,7 @@ using namespace std;
     size--;
     return index;
 }
-/* O(N) time */ int linearSearch(int arr[], int size, int value)
+int linearSearch(int arr[], int size, int value)
 {
     for (int i = 0; i < size; i++)
     {
@@ -82,7 +82,7 @@ using namespace std;
     }
     return -1;
 }
-/* O(N) time */ void rotateLeft(int arr[], int size)
+void rotateLeft(int arr[], int size)
 {
     int last = arr[0];
     for (int i = 1; i < size; i++)
@@ -91,7 +91,7 @@ using namespace std;
     }
     arr[size - 1] = last;
 }
-/* O(N) time */ void rotateRight(int arr[], int size)
+void rotateRight(int arr[], int size)
 {
     int first = arr[size - 1];
     for (int i = size; i > 1; i--)
@@ -100,7 +100,7 @@ using namespace std;
     }
     arr[0] = first;
 }
-/* O(N) time */ void reverse(int arr[], int size)
+void reverse(int arr[], int size)
 {
     for (int i = 0, j = size - 1; i < j; i++, j--)
     {
@@ -109,7 +109,7 @@ using namespace std;
         arr[j] = temp;
     }
 }
-/* O(N) time */ void fwdDisplayRec(int arr[], int size)
+void fwdDisplayRec(int arr[], int size)
 {
     if (size == 0)
     {
@@ -118,7 +118,7 @@ using namespace std;
     fwdDisplayRec(arr, size - 1);
     printf(" %d", arr[size - 1]);
 }
-/* O(N) time */ void revDisplayRec(int arr[], int size)
+void revDisplayRec(int arr[], int size)
 {
     if (size == 0)
     {
@@ -127,7 +127,7 @@ using namespace std;
     printf(" %d", arr[size - 1]);
     revDisplayRec(arr, size - 1);
 }
-/* O(N) time */ void display(int arr[], int size)
+void display(int arr[], int size)
 {
     cout << "\nArray :";
     for (int i = 0; i < size; i++)
@@ -283,3 +283,22 @@ int main()
 
     return 0;
 }
+
+// Time Complexities of these functions
+
+// void display(ListNode *head)                                     O(N)
+// void fwdDisplayRec(int arr[], int size)                          O(N)
+// void revDisplayRec(int arr[], int size)                          O(N)
+
+// int insertAtBeg(int arr[], int &size, int value)                 O(1)
+// int insertAtEnd(int arr[], int &size, int value)                 O(N) can be optimised to O(1)
+// int insertAtIndex(int arr[], int &size, int value, int index)    O(N)
+
+// int deleteAtBeg(int arr[], int &size)                            O(1)
+// int deleteAtEnd(int arr[], int &size)                            O(N)
+// int deleteAtIndex(int arr[], int &size, int index)               O(N)
+
+// int linearSearch(int arr[], int size, int value)                 O(N)
+// void rotateLeft(int arr[], int size)                             O(N) can be optimised to O(1)
+// void rotateRight(int arr[], int size)                            O(N)
+// void reverse(int arr[], int size)                                O(N)

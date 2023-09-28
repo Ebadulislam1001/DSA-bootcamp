@@ -233,13 +233,13 @@ int main()
 // Time Complexities of these functions
 
 // int readValue(ListNode *head, int size, int index)                   O(N)
-//  int writeValue(ListNode *head, int size, int index, int value)      O(N)
-//  int searchValue(ListNode *head, int value)                          O(N)
+// int writeValue(ListNode *head, int size, int index, int value)      O(N)
+// int searchValue(ListNode *head, int value)                          O(N)
 
-//  void rotateLeft(ListNode *head)                                     O(N) can be optimised to O(1)
-//  void rotateRight(ListNode *head)                                    O(N)
+// void rotateLeft(ListNode *head)                                     O(N) can be optimised to O(1)
+// void rotateRight(ListNode *head)                                    O(N)
 
-//  ListNode *reverseListItr(ListNode *head)                            O(N)
-//  ListNode *reverseListRec(ListNode *head)                            O(N)
-//  void fwdDisplayRec(ListNode *head)                                  O(N)
-//  void revDisplayRec(ListNode *head)                                  O(N)
+// ListNode *reverseListItr(ListNode *head)                            O(N)
+// ListNode *reverseListRec(ListNode *head)                            O(N)
+// void fwdDisplayRec(ListNode *head)                                  O(N)
+// void revDisplayRec(ListNode *head)                                  O(N)
