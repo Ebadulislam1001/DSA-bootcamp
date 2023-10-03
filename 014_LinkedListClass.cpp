@@ -11,7 +11,7 @@ struct ListNode
     ListNode(int data, ListNode *next = NULL)
     {
         this->data = data;
-        this->next = NULL;
+        this->next = next;
     }
 };
 
@@ -36,8 +36,6 @@ public:
     int deleteAtEnd();                     // Delete node at End
     int deleteAtInd(int index);            // Delete node at given Index
     void display();                        // Display the List
-    void reverse();                        // Reverse the list
-    void sort();                           // Sort the list
 };
 
 int main()
@@ -229,28 +227,6 @@ int LinkedList::deleteAtInd(int index) // Delete at given Index
     return index;
 }
 void LinkedList::display() // Display the List
-{
-    printf("\nList ");
-    ListNode *temp = this->head;
-    while (temp != NULL)
-    {
-        printf("-> %d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\nSize = %2d", this->size);
-}
-void LinkedList::reverse() // Reverse the List
-{
-    printf("\nList ");
-    ListNode *temp = this->head;
-    while (temp != NULL)
-    {
-        printf("-> %d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\nSize = %2d", this->size);
-}
-void LinkedList::sort() // Sort the List
 {
     printf("\nList ");
     ListNode *temp = this->head;
