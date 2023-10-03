@@ -27,6 +27,7 @@ ListNode *createNode(int value = 0) // Creates/Allocates a new node
 
     return newnode;
 }
+
 int sizeOf(ListNode *&head) // Returns the size of the list i.e. the number of nodes
 {
     int size = 0;
@@ -192,6 +193,8 @@ int deleteAtIndex(ListNode *&head, int index) // Delete at given Index
     return index;
 }
 
+// size of the list is calculated by a dedicated function that takes extra O(N) time
+
 int main()
 {
     int choice, index, value;
@@ -199,7 +202,6 @@ int main()
     while (1)
     {
         printf("\n\n=============MENU=============\n");
-
         printf("\nInsert at:\n\t01.beginning\n\t02.end\n\t03.given index");
         printf("\nDelete at:\n\t04.beginning\n\t05.end\n\t06.given index");
         printf("\n0.Exit\n\n");

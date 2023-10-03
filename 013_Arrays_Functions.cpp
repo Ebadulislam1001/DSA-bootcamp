@@ -142,7 +142,6 @@ int main()
     while (true)
     {
         printf("\n\n=============MENU=============\n");
-
         printf("\nInsertion\n\t01.at beginning\n\t02.at end\n\t03.at given index");
         printf("\nDeletion\n\t04.at beginning\n\t05.at end\n\t06.at given Index");
         printf("\nSearch\n\t07.linear search");

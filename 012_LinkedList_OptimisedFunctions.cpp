@@ -15,6 +15,7 @@ ListNode *createNode(int value = 0) // allocate memory for a new node
     newnode->next = NULL;
     return newnode;
 }
+
 int insertAtBeg(ListNode *&head, ListNode *&tail, int &size, int value) // In O(1) time
 {
     ListNode *newnode = createNode(value);
@@ -160,19 +161,26 @@ void rightRotate(ListNode *&head, ListNode *&tail, int size) // In O(n) time
 }
 // NOTE: tail pointer reduced the time complexity of leftRotate function from O(N) to O(1)
 // But it didnt reduce the time taken by rightRotate function
-int display(ListNode *head) // Display using List Traversal
+int display(ListNode *head, int size) // Display using List Traversal
 {
-    int size = 0;
+    int count = 0;
     printf("\nList:\t");
     ListNode *temp = head;
     while (temp != NULL)
     {
         printf(" -> %d", temp->data);
         temp = temp->next;
-        size += 1;
+        count += 1;
     }
-    return size;
+    if (count != size)
+    {
+        printf("\nInconsistency detected");
+    }
+    return count;
 }
+
+// size of the list is passed into the insertion/deletion functions and is updated there only.
+//
 
 int main()
 {
@@ -183,7 +191,6 @@ int main()
     while (1)
     {
         printf("\n\n=============MENU=============\n");
-
         printf("\nInsert at:\n\t01.Beginning\n\t02.End\n\t03.Given Index");
         printf("\nDelete at:\n\t04.Beginning\n\t05.End\n\t06.Given Index");
         printf("\nRotate:\n\t07.Left\n\t08.Right");
@@ -191,21 +198,21 @@ int main()
         scanf("%d", &choice);
         switch (choice)
         {
-        case 1: // insert at beg
+        case 1: // Insert at beg
         {
             printf("Enter data value: ");
             scanf("%d", &value);
             index = insertAtBeg(head, tail, size, value);
             break;
         }
-        case 2: // insert at end
+        case 2: // Insert at end
         {
             printf("Enter data value: ");
             scanf("%d", &value);
             index = insertAtEnd(head, tail, size, value);
             break;
         }
-        case 3: // insert at index
+        case 3: // Insert at index
         {
             printf("Enter data value: ");
             scanf("%d", &value);
@@ -214,17 +221,17 @@ int main()
             index = insertAtIndex(head, tail, size, value, index);
             break;
         }
-        case 4: // delete at beg
+        case 4: // Delete at beg
         {
             index = deleteAtBeg(head, tail, size);
             break;
         }
-        case 5: // delete at end
+        case 5: // Delete at end
         {
             index = deleteAtEnd(head, tail, size);
             break;
         }
-        case 6: // delete at index
+        case 6: // Delete at index
         {
             printf("Enter index: ");
             scanf("%d", &index);
@@ -253,6 +260,6 @@ int main()
             printf("\nInvalid choice (choose 0-8)");
         }
         }
-        size = display(head);
+        size = display(head, size);
     }
 }

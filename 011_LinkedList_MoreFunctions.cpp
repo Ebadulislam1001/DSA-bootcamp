@@ -130,6 +130,8 @@ int display(ListNode *head) // Display the list using iterative traversal
     return size;
 }
 
+// size of the list is calculated by the display function that takes O(N) time
+
 int main()
 {
     int choice, index, value, size = 0;
@@ -137,7 +139,6 @@ int main()
     while (1)
     {
         printf("\n\n=============MENU=============\n");
-
         printf("\n00.Exit\n01.Add node\n02.Del node\n03.Read data\n04.Write data");
         printf("\n05.Search data\n06.Rotate Left\n07.Rotate Right");
         printf("\n08.FWD Display List (rec.)\n08.REV Display (rec.)\n\n");
