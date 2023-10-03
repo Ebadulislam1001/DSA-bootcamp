@@ -45,7 +45,6 @@ int main()
     while (1)
     {
         printf("\n\n=============MENU=============\n");
-
         printf("\nInsert at:\n\t01.beginning\n\t02.end\n\t03.given index");
         printf("\nDelete at:\n\t04.beginning\n\t05.end\n\t06.given index");
         printf("\n0.Exit\n\n");

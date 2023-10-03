@@ -20,6 +20,7 @@ int main()
         c_ptr = c_ptr + 1;
     }
     printf("\n");
+
     // printing values of i_ptr
     for (int i = 0; i < 5; i++)
     {
@@ -27,13 +28,14 @@ int main()
         i_ptr = i_ptr + 1;
     }
     printf("\n");
+
     // printing values of i_ptr
     for (int i = 0; i < 5; i++)
     {
         printf("\nvalue of d_ptr => %d", d_ptr);
         d_ptr = d_ptr + 1;
     }
-    printf("\n\n");
+    printf("\n");
 
     // Using %d specifier to print the address in base-10 int for easy understanding
     return 0;

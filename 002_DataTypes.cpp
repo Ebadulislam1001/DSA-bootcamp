@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     printf("\n");
-    printf("\tbool          => \t %2d Bytes \t %2d Bytes\t\n", sizeof(bool), sizeof(bool *));
+    printf("\tbool          => \t %2d Bytes \t %2d Bytes\n", sizeof(bool), sizeof(bool *));
     printf("\tchar          => \t %2d Bytes \t %2d Bytes\n", sizeof(char), sizeof(char *));
     printf("\tint           => \t %2d Bytes \t %2d Bytes\n", sizeof(int), sizeof(int *));
     printf("\tfloat         => \t %2d Bytes \t %2d Bytes\n", sizeof(float), sizeof(float *));
