@@ -1,4 +1,4 @@
-// 012 Linked Lists Object
+// 014 Linked Lists Class
 #include <iostream>
 using namespace std;
 
