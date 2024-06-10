@@ -18,9 +18,9 @@ int main()
     // printf("\tlong long double   => \t %2d Bytes \t %2d Bytes\n", sizeof(long long double), sizeof(long long double *));
     printf("\n\n");
 
-    // `long` is same as `long int` by default
-    // `long long` is same as `long long int` by default
-    // `long long double` isnt a valid type
+    // variables of different data types are of different sizes, but
+    // the pointers pointing to them are of the same size, because
+    // what is stored in the pointers is the address of the variables
 
     return 0;
 }
