@@ -42,7 +42,9 @@ int main()
     }
 
     // REALLOC
-    // realloc() function takes a pointer to the old object, and a new size as arguments and returns a void pointer pointing to a new object of the requested new size. The contents of the new object is identical to that of the old object prior to reallocation, up to the lesser of the new and old sizes. Any bytes in the new object beyond the size of the old object have indeterminate values.
+    // realloc() function takes a pointer to the old object, and a new size as arguments and returns a void pointer pointing to a new object of the requested new size.
+    // The contents of the new object is identical to that of the old object prior to reallocation, up to the lesser of the new and old sizes.
+    // Any bytes in the new object beyond the size of the old object have indeterminate values.
     // Before using, you need to typecast the returned void pointer to the required type.
     // Suitable for scaling the size of dynamically allocated arrays.
     // Suitable for allocating memory for arrays.
