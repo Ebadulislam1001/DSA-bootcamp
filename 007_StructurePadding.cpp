@@ -37,8 +37,13 @@ int main()
     printf("\nsizeof type2 struct    = %d", sizeof(type2));
     printf("\nsizeof type3 struct    = %d", sizeof(type3));
 
-    // The size of a struct is not always equal to the sum of the sizes of its members. This is because the compiler may add padding to the struct to ensure that its members are aligned on a word boundary. Word boundaries are important for performance, as they allow the CPU to access data more efficiently. The amount of padding added to a struct is implementation-defined. This means that the amount of padding may vary depending on the compiler and the platform.
-    // In easier words padding makes sure that every int variable has an address that is a multiple of 4, and every double variable has an address that is a multiple of 8, to ensure that variables of same data type are aligned with each other.
+    // The size of a struct is not always equal to the sum of the sizes of its members.
+    // This is because the compiler may add padding to the struct to ensure that its members are aligned on a word boundary.
+    // Word boundaries are important for performance, as they allow the CPU to access data more efficiently.
+    // The amount of padding added to a struct often depends on the compiler and the platform.
+
+    // In easier words padding makes sure that every int variable has an address that is a multiple of 4,
+    // and every double variable has an address that is a multiple of 8, to ensure that variables of same data type are aligned with each other.
 
     // Lets see why these structures take different memory despite having same type of variable members (just in different order)
     printf("\n\n\nAddress of type1 variable var 1 = &var1 = %d", &var1);
