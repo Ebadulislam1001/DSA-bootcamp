@@ -6,12 +6,9 @@ struct ListNode
 {
     int data;
     ListNode *next;
-
-    // next pointer declaration syntax for C
-    // struct ListNode *next;
 };
 
-ListNode *createNode(int value = 0) // Creates/Allocates a new node
+ListNode *createNode(int data = 0, ListNode *next = NULL) // Creates/Allocates a new node
 {
     // Using malloc to create/allocate a node in C
     // struct ListNode* newnode = (struct ListNode *)malloc(sizeof(struct ListNode *));
@@ -22,8 +19,8 @@ ListNode *createNode(int value = 0) // Creates/Allocates a new node
     // Using new to create/allocate a node in C++
     ListNode *newnode = new ListNode;
 
-    newnode->data = value;
-    newnode->next = NULL;
+    newnode->data = data;
+    newnode->next = next;
 
     return newnode;
 }
