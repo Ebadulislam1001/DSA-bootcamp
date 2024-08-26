@@ -2,54 +2,55 @@
 #include <iostream>
 using namespace std;
 
-struct ListNode
+typedef struct ListNode
 {
     int data;
     ListNode *next;
-};
+} ListNode;
+// Using typedef to make the code more C friendly
 
 ListNode *createNode(int data = 0, ListNode *next = NULL) // Creates/Allocates a new node
 {
-    // Using malloc to create/allocate a node in C
-    // struct ListNode* newnode = (struct ListNode *)malloc(sizeof(struct ListNode *));
-
-    // Using malloc to create/allocate a node in C++
-    // ListNode* newnode = (ListNode *)malloc(sizeof(ListNode *));
+    // Using malloc to create/allocate a node in C/C++
+    ListNode *newnode = (ListNode *)malloc(sizeof(ListNode *));
 
     // Using new to create/allocate a node in C++
-    ListNode *newnode = new ListNode;
+    // ListNode *newnode = new ListNode;
 
     newnode->data = data;
     newnode->next = next;
+    // Note: the next part of the newnode is set as NULL by default.
 
     return newnode;
 }
 
-int sizeOf(ListNode *&head) // Returns the size of the list i.e. the number of nodes
+int sizeOf(ListNode *head) // Returns the size of the list i.e. the number of nodes
 {
     int size = 0;
     ListNode *temp = head;
+    // For every node in the list increment the size by 1 & then point to the next node
     while (temp != NULL)
     {
-        // For every node in the list increment the size by 1 & then point to the next node
         temp = temp->next;
         size = size + 1;
     }
     // Hence, size = no. of nodes in the list
     return size;
 }
-void display(ListNode *head) // Display using List Traversal
+
+void showList(ListNode *head) // print using List Traversal
 {
     printf("\nList:");
     ListNode *temp = head;
+    // For every node in the list print its data value & then point to the next node
     while (temp != NULL)
     {
-        // For every node in the list print its data value & then point to the next node
-        printf(" %d", temp->data);
+        printf("-> %d ", temp->data);
         temp = temp->next;
     }
 }
-int insertAtBeg(ListNode *&head, int value) // Insert at Beginning
+
+ListNode *insertAtBeg(ListNode *head, int value) // Insert at Beginning
 {
     // Allocate a node dynamically
     ListNode *newnode = createNode(value);
@@ -58,9 +59,10 @@ int insertAtBeg(ListNode *&head, int value) // Insert at Beginning
     // Newnode is the new first node
     head = newnode;
     // Newnode added at beginning
-    return 0;
+    return head;
 }
-int insertAtEnd(ListNode *&head, int value) // Insert at End
+
+ListNode *insertAtEnd(ListNode *head, int value) // Insert at End
 {
     // Allocate a node dynamically
     ListNode *newnode = createNode(value);
@@ -70,36 +72,29 @@ int insertAtEnd(ListNode *&head, int value) // Insert at End
         // Newnode is the new first node
         head = newnode;
         // Newnode added at beginning
-        return 0;
+        return head;
     }
-    int index = 1;
+    // The list is not empty and has atleast one node
     ListNode *temp = head;
-    // Traverse the list till the last node
     while (temp->next != NULL)
     {
         temp = temp->next;
-        index += 1;
     }
     // Make the last node point to newnode
-    // Newnode is the new last node
     temp->next = newnode;
-    // Newnode added at end
-    return index;
+    // Newnode is the new last node
+    return head;
 }
-int insertAtIndex(ListNode *&head, int value, int index) // Insert at given Index
+
+ListNode *insertAtIndex(ListNode *head, int value, int index) // Insert at given Index
 {
-    if (index < 0 || sizeOf(head) < index)
-    {
-        // Invalid Index
-        // No node is added
-        return -1;
-    }
+    // We made sure that the index is valid
     if (index == 0)
     {
-        // If index = 0: insert the newnode at beginning
         return insertAtBeg(head, value);
     }
-    // Allocate a node dynamically
+
+    // Index is more than zero, and since the index is valid the list has atleast one node
     ListNode *newnode = createNode(value);
     ListNode *temp = head;
     // Traverse the list till the given index
@@ -107,39 +102,40 @@ int insertAtIndex(ListNode *&head, int value, int index) // Insert at given Inde
     {
         temp = temp->next;
     }
-    // Make the (i-1)th node point to newnode
-    // Newnode is the new ith node
+    // Make the new node point to the prev ith node
     newnode->next = temp->next;
+    // Make the (i-1)th node point to newnode
     temp->next = newnode;
-    // Newnode added at the given index
-    return index;
+    // Newnode is the new ith node
+    return head;
 }
-int deleteAtBeg(ListNode *&head) // Delete at Beginning
+
+ListNode *deleteAtBeg(ListNode *head) // Delete at Beginning
 {
 
     if (head == NULL)
     {
         // The list is empty
-        // No node is deleted
-        return -1;
+        return head;
     }
+    // The list has atleast one node
     // Mark the first node dead;
     ListNode *dead = head;
     // Make the head point to the second node
-    // Second node is the new first node
     head = dead->next;
-    // Prev first node is deleted (memory deallocated)
-    delete dead;
+    // Second node is the new first node
+    // Prev first node is freed (memory deallocated)
+    free(dead);
     // Node deleted from beginning
-    return 0;
+    return head;
 }
-int deleteAtEnd(ListNode *&head) // Delete at End
+
+ListNode *deleteAtEnd(ListNode *head) // Delete at End
 {
     if (head == NULL)
     {
         // The list is empty
-        // No node is deleted
-        return -1;
+        return head;
     }
     // If the list has only one node
     if (head->next == NULL)
@@ -147,30 +143,24 @@ int deleteAtEnd(ListNode *&head) // Delete at End
         // Delete the first node
         return deleteAtBeg(head);
     }
-    int index = 1;
+    // The list has atleast two nodes
     ListNode *temp = head;
     // Traverse the list till the second last node
     while (temp->next->next != NULL)
     {
         temp = temp->next;
-        index += 1;
     }
     // Delete the last node
-    delete temp->next;
+    free(temp->next);
     // Second last node is the new last node
     temp->next = NULL;
     // Node deleted from end
-    return index;
+    return head;
 }
-int deleteAtIndex(ListNode *&head, int index) // Delete at given Index
+
+ListNode *deleteAtIndex(ListNode *head, int index) // Delete at given Index
 {
-    if (index < 0 || sizeOf(head) - 1 < index)
-    {
-        // Checks for invalid Index
-        // Also checks for if list is empty or not
-        // No node is deleted
-        return -1;
-    }
+    // We made sure that the index is valid
     if (index == 0)
     {
         // If index = 0: delete the newnode from beginning
@@ -185,22 +175,24 @@ int deleteAtIndex(ListNode *&head, int index) // Delete at given Index
     // Mark the node at the given index as dead
     ListNode *dead = temp->next;
     temp->next = dead->next;
-    delete dead;
+    free(dead);
     // Node deleted from the given index
-    return index;
+    return head;
 }
 
 // size of the list is calculated by a dedicated function that takes extra O(N) time
 
 int main()
 {
-    int choice, index, value;
     ListNode *head = NULL;
     while (1)
     {
+        int choice, index, value;
         printf("\n\n=============MENU=============\n");
-        printf("\nInsert at:\n\t01.beginning\n\t02.end\n\t03.given index");
-        printf("\nDelete at:\n\t04.beginning\n\t05.end\n\t06.given index");
+        printf("\nInsert at:");
+        printf("\n\t01.beginning\n\t02.end\n\t03.given index");
+        printf("\nDelete at:");
+        printf("\n\t04.beginning\n\t05.end\n\t06.given index");
         printf("\n0.Exit\n\n");
         scanf("%d", &choice);
         switch (choice)
@@ -209,16 +201,16 @@ int main()
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            index = insertAtBeg(head, value);
-            display(head);
+            head = insertAtBeg(head, value);
+            showList(head);
             break;
         }
         case 2: // Insert at end
         {
             printf("Enter data value: ");
             scanf("%d", &value);
-            index = insertAtEnd(head, value);
-            display(head);
+            head = insertAtEnd(head, value);
+            showList(head);
             break;
         }
         case 3: // Insert at index
@@ -227,28 +219,57 @@ int main()
             scanf("%d", &value);
             printf("Enter index: ");
             scanf("%d", &index);
-            index = insertAtIndex(head, value, index);
-            display(head);
+            int size = sizeOf(head);
+            if (index < 0 || size < index)
+            {
+                printf("Invalid index\n");
+                break;
+            }
+            head = insertAtIndex(head, value, index);
+            showList(head);
             break;
         }
         case 4: // Delete at beg
         {
-            index = deleteAtBeg(head);
-            display(head);
+            int size = sizeOf(head);
+            if (size == 0)
+            {
+                printf("Underflow\n");
+                break;
+            }
+            head = deleteAtBeg(head);
+            showList(head);
             break;
         }
         case 5: // Delete at end
         {
-            index = deleteAtEnd(head);
-            display(head);
+            int size = sizeOf(head);
+            if (size == 0)
+            {
+                printf("Underflow\n");
+                break;
+            }
+            head = deleteAtEnd(head);
+            showList(head);
             break;
         }
         case 6: // Delete at index
         {
+            int size = sizeOf(head);
+            if (size == 0)
+            {
+                printf("Underflow\n");
+                break;
+            }
             printf("Enter index: ");
             scanf("%d", &index);
-            index = deleteAtIndex(head, index);
-            display(head);
+            if (index < 0 || size <= index)
+            {
+                printf("Invalid index\n");
+                break;
+            }
+            head = deleteAtIndex(head, index);
+            showList(head);
             break;
         }
         case 0:
@@ -261,20 +282,6 @@ int main()
             printf("\nInvalid choice (choose 0-6)");
         }
         }
-        if (1 <= choice && choice <= 3)
-        {
-            if (index == -1)
-                printf("\nFailed to insert node");
-            else
-                printf("\nNode inserted at index %d", index);
-        }
-        if (4 <= choice && choice <= 6)
-        {
-            if (index == -1)
-                printf("\nFailed to delete node");
-            else
-                printf("\nNode deleted at index %d", index);
-        }
     }
 }
 
@@ -282,7 +289,7 @@ int main()
 
 // ListNode *createNode(int value = 0)                      O(1)
 // int sizeOf(ListNode *&head)                              O(N) can be optimised to O(1)
-// void display(ListNode *head)                             O(N)
+// void showList(ListNode *head)                            O(N)
 
 // int insAtBeg(ListNode *&head, int value)                 O(1)
 // int insAtEnd(ListNode *&head, int value)                 O(N) can be optimised to O(1)
